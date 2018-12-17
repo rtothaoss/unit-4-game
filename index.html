@@ -61,8 +61,8 @@
             <div class="col-md-2">
                 <div class="jumbotron jumbotron-fluid" style="padding: 3.400em 0.355em;">
                     <div class="container">
-                        <p class="lead">Wins: 0</p>
-                        <p class="lead">Losses: 0</p>
+                        <p class="lead wins"></p>
+                        <p class="lead loss"></p>
                     </div>
                 </div>
             </div>
@@ -73,10 +73,8 @@
     <div class="container">
         <div class="row">
             <div class="col-md-4">
-                <img src="assets/images/Screen Shot 2018-12-16 at 6.23.56 PM.png">
-                <img src="assets/images/Screen Shot 2018-12-16 at 6.23.36 PM.png">
-                <img src="assets/images/Screen Shot 2018-12-16 at 6.23.43 PM.png">
-                <img src="assets/images/Screen Shot 2018-12-16 at 6.23.48 PM.png">
+                <div id="crystals">
+                </div>
             </div>
         </div>
     </div>
@@ -99,7 +97,7 @@
             <div class="col-md-4">
                 <div class="jumbotron jumbotron-fluid" style="padding: 1.786em 0.000em; margin-bottom: 0.000em">
                     <div class="container">
-                        <h1 class="display-4">0</h1>
+                        <h1 id="counter" class="display-4"></h1>
                     </div>
                 </div>
             </div>
@@ -108,7 +106,7 @@
 
 <script>
 
-
+$(document).ready(function () {
 
 var numberOne = 0;
 var numberTwo = 0;
@@ -116,22 +114,31 @@ var numberThree = 0;
 var numberFour = 0;
 var numberFive = 0;
 var targetNumber;
+var counter = 0;
+
+
+$('#counter').text(counter);
 
 
 function newGame() {
     // number to win the game      
+    // number to win the game   
+
     var random = Math.floor(Math.random() * 120) + 19;
         
         targetNumber = random;
         
-        $('#target-number').append(targetNumber);
+        $('#target-number').text(targetNumber);
 
+    // numbers for the crystals 
+    // numbers for the crystals 
+    
     while(numberOne === numberThree)
     {
         numberOne = Math.floor(Math.random() * 12) + 1;
     }
 
-// run this loop until numberTwo is different than numberThree and numberOne
+
     while(numberTwo === numberThree || numberTwo === numberOne)
     {
         numberTwo = Math.floor(Math.random() * 12) + 1;
@@ -146,6 +153,8 @@ function newGame() {
         numberFour = Math.floor(Math.random() * 12) + 1;
     }
 
+
+
 }
 
 newGame()
@@ -153,9 +162,212 @@ console.log(numberOne);
 console.log(numberTwo);
 console.log(numberThree);
 console.log(numberFour);
-// console.log(numberFive);
 
 
+
+// Array with crystal values 
+// Array with crystal values 
+
+var value = [numberOne, numberTwo, numberThree, numberFour];
+
+console.log(value);
+
+var win = 0;
+var loss = 0;
+
+$('.wins').text('Wins: ' + win)
+$('.loss').text('Losses: ' + loss)
+
+var imageArray = [
+    'assets/images/Screen Shot 2018-12-16 at 6.23.56 PM.png',
+    'assets/images/Screen Shot 2018-12-16 at 6.23.36 PM.png',
+    'assets/images/Screen Shot 2018-12-16 at 6.23.43 PM.png',
+    'assets/images/Screen Shot 2018-12-16 at 6.23.48 PM.png' 
+
+];
+
+for (var i = 0; i < value.length; i++) {
+    var imageCrystal = $('<img>');
+    imageCrystal.addClass('crystal-image');
+    imageCrystal.attr('src', imageArray[i])
+    imageCrystal.attr('value', value[i]);
+    $("#crystals").append(imageCrystal);  
+}
+
+$('.crystal-image').on('click', function() {
+    var crystalValue = ($(this).attr("value"));
+    crystalValue = parseInt(crystalValue);
+    counter += crystalValue;
+
+$('#counter').text(counter);
+
+if (counter === targetNumber) {
+  alert("You win!");
+  win++;
+  counter = 0;
+  $('#counter').text(counter);
+  newGame();
+}
+
+else if (counter >= targetNumber) {
+  alert("You lose!!");
+  loss++;
+  counter = 0;
+  $('#counter').text(counter);
+  newGame();
+}
+
+
+
+
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Giving Images on clicks and values
+// Giving Images on clicks and values
+
+
+// var imageCrystal1 = $('.crystal-image1')
+
+// imageCrystal1.attr("value", numberOne);
+
+// $('.crystal-image1').on('click', function() {
+//     var crystalValue1 = ($(this).attr("value"));
+//     crystalValue1 = parseInt(crystalValue1);
+//     counter += crystalValue1;
+//     console.log(counter);
+
+//     $('#counter').text(counter);
+
+//     if (counter === targetNumber) {
+//     alert('You win!');
+//     counter = 0;
+//     newGame();
+// } 
+// else if (counter >= targetNumber) {
+//     alert('You lose!');
+//     counter = 0;
+//     newGame();
+// }
+// })
+
+// var imageCrystal2 = $('.crystal-image2')
+
+// imageCrystal2.attr("value", numberTwo);
+
+// $('.crystal-image2').on('click', function() {
+//     var crystalValue2 = ($(this).attr("value"));
+//     crystalValue2 = parseInt(crystalValue2);
+//     counter += crystalValue2;
+//     console.log(counter);
+
+//     $('#counter').text(counter);
+
+//     if (counter === targetNumber) {
+//     alert('You win!');
+//     counter = 0;
+//     newGame();
+// } 
+// else if (counter >= targetNumber) {
+//     alert('You lose!');
+//     counter = 0;
+//     newGame();
+// }
+// })
+
+// var imageCrystal3 = $('.crystal-image3')
+
+// imageCrystal3.attr("value", numberThree);
+
+// $('.crystal-image3').on('click', function() {
+//     var crystalValue3 = ($(this).attr("value"));
+//     crystalValue3 = parseInt(crystalValue3);
+//     counter += crystalValue3;
+//     console.log(counter);
+
+//     $('#counter').text(counter);
+
+//     if (counter === targetNumber) {
+//     alert('You win!');
+//     counter = 0;
+//     newGame();
+// } 
+// else if (counter >= targetNumber) {
+//     alert('You lose!');
+//     counter = 0;
+//     newGame();
+// }
+// })
+
+// var imageCrystal4 = $('.crystal-image4')
+
+// imageCrystal4.attr("value", numberFour);
+
+// $('.crystal-image4').on('click', function() {
+//     var crystalValue4 = ($(this).attr("value"));
+//     crystalValue4 = parseInt(crystalValue4);
+//     counter += crystalValue4;
+//     console.log(counter);
+
+//     $('#counter').text(counter);
+
+//     if (counter === targetNumber) {
+//     alert('You win!');
+//     counter = 0;
+//     newGame();
+// } 
+// else if (counter >= targetNumber) {
+//     alert('You lose!');
+//     counter = 0;
+//     newGame();
+// }
+// })
+
+// alert("New Score: " + counter);
+
+// Win Conditions
+// Win Conditions
+
+// if (counter === targetNumber) {
+//     alert('You win!');
+// } 
+// else if (counter >= targetNumber) {
+//     alert('You lose!');
+// }
+
+// $('#counter').text(counter);
+
+
+
+});
 
 
 
