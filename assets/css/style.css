@@ -1,0 +1,11 @@
+body {
+    background-image: url(../images/what-the-hex.png);
+}
+
+/* .jumbotron {
+    background-image: url(../images/what-the-hex.png);
+} */
+
+img {
+    margin-left: 0.714em;
+}
