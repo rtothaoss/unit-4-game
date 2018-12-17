@@ -12,6 +12,9 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
         crossorigin="anonymous">
+    
+    <script type="text/javascript" src="assets/javascript/game.js"></script>
+    
     <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
 
@@ -50,7 +53,7 @@
             <div class="col-md-4">
                 <div class="jumbotron jumbotron-fluid" style="padding: 2.500em 0.357em;">
                     <div class="container">
-                        <h1 class="display-4">39</h1>
+                        <h1 id="target-number" class="display-4"></h1>
                     </div>
                 </div>
             </div>
@@ -103,9 +106,100 @@
         </div>
     </div>
 
+<script>
 
 
 
+var numberOne = 0;
+var numberTwo = 0;
+var numberThree = 0;
+var numberFour = 0;
+var numberFive = 0;
+var targetNumber;
+
+
+function newGame() {
+    // number to win the game      
+    var random = Math.floor(Math.random() * 120) + 19;
+        
+        targetNumber = random;
+        
+        $('#target-number').append(targetNumber);
+
+    while(numberOne === numberThree)
+    {
+        numberOne = Math.floor(Math.random() * 12) + 1;
+    }
+
+// run this loop until numberTwo is different than numberThree and numberOne
+    while(numberTwo === numberThree || numberTwo === numberOne)
+    {
+        numberTwo = Math.floor(Math.random() * 12) + 1;
+    }
+
+    while(numberThree === numberOne || numberThree === numberTwo || numberThree === numberFour)
+    {
+        numberThree = Math.floor(Math.random() * 12) + 1;
+    }
+    while(numberFour === numberOne || numberFour === numberTwo || numberFour === numberThree || numberFour === numberFive)
+    {
+        numberFour = Math.floor(Math.random() * 12) + 1;
+    }
+
+}
+
+newGame()
+console.log(numberOne);
+console.log(numberTwo);
+console.log(numberThree);
+console.log(numberFour);
+// console.log(numberFive);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// var targetNumber;
+// var buttonNumber1;
+// var buttonNumber2;
+
+// function newGame() {
+//     // number to win the game      
+//     var random = Math.floor(Math.random() * 120) + 19;
+        
+//         targetNumber = random;
+        
+//         $('#target-number').append(targetNumber);
+
+//     // number generated for button 1
+//     var number1 = Math.floor(Math.random() * 12) + 1;
+
+//         buttonNumber1 = number1;
+
+//         $('#button1').append(buttonNumber1);
+//         console.log(buttonNumber1);
+
+
+
+//     }
+     
+//      newGame();
+
+ </script>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
