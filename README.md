@@ -1,4 +1,5 @@
 # unit-4-game
+Deployed Page: https://rtothaoss.github.io/unit-4-game/
 
 This is a game where you will be given a random number as a target for you to reach. 
 -The target number is above the crystals.
